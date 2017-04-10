@@ -11,7 +11,7 @@ module.exports = {
             'vue',
             'vuex',
             'vue-router',
-            'vue-router-sync'
+            'vuex-router-sync'
         ]
     },
     output:{
@@ -28,7 +28,7 @@ module.exports = {
     module:{
         rules:[
             {
-                enforce:'prev',
+                enforce:'pre',
                 test:/.vue$/,
                 loader: 'eslint-loader',
                 exclude: /node_modules/
