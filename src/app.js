@@ -2,25 +2,28 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
+// import 'element-ui/lib/theme-default/index.css'
 import { sync } from 'vuex-router-sync'
-import * as filters from './filters'
+import components from './components'
+import directives from './directives'
+import filters from './filters'
 
 // sync the router with the vuex store.
 // this registers `store.state.route`
 sync(store, router)
 
-// register global utility filters.
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
+// register global dependencies.
+Vue.use(components)
+Vue.use(directives)
+Vue.use(filters)
 
 // create the app instance.
 // here we inject the router and store to all child components,
 // making them available everywhere as `this.$router` and `this.$store`.
 const app = new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 })
 
 // expose the app, the router and the store.
