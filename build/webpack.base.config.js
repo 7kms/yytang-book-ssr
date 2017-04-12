@@ -29,27 +29,27 @@ module.exports = {
         rules: [{
                 enforce: 'pre',
                 test: /.vue$/,
-                loader: 'eslint-loader',
+                use: 'eslint-loader',
                 exclude: /node_modules/
             },
             {
                 test: /.vue$/,
-                loader: 'vue-loader',
+                use: 'vue-loader',
                 exclude: /node_modules/,
                 options: vueConfig
             },
             {
                 test: /.css$/,
-                loader: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /.js$/,
-                loader: 'babel-loader',
+                use: 'babel-loader',
                 exclude: /node_modules/
             },
             {
                 test: /.(eot|ttf|woff|woff2)$/,
-                loader: 'file-loader',
+                use: 'file-loader',
                 options: {
                     name: '[name].[hash:6].[ext]'
                 }
