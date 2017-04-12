@@ -3,11 +3,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-// import 'element-ui/lib/theme-default/index.css'
 import { sync } from 'vuex-router-sync'
 import components from './components'
 import directives from './directives'
 import filters from './filters'
+import 'normalize.css'
 
 // sync the router with the vuex store.
 // this registers `store.state.route`

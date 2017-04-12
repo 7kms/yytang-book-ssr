@@ -1,10 +1,12 @@
-import { Button, Select } from 'element-ui'
+// import { Button, Select } from 'element-ui'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 
 const componentsObj = {
-    Button,
-    Select
+
 }
 const install = function(Vue) {
+    Vue.use(ElementUI)
     Object.keys(componentsObj).forEach((val) => {
         Vue.component(componentsObj[val].name, componentsObj[val])
     })

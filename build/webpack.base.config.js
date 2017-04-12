@@ -36,13 +36,18 @@ module.exports = {
             },
             {
                 test: /.vue$/,
-                use: 'vue-loader',
-                exclude: /node_modules/,
-                options: vueConfig
+                use: [{
+                    loader: 'vue-loader',
+                    options: vueConfig
+                }],
+                exclude: /node_modules/
+
             },
             {
                 test: /.css$/,
-                loader: ['css-loader']
+                use: ExtractTextPlugin.extract({
+                    use: 'css-loader'
+                })
             },
             {
                 test: /.js$/,
@@ -50,11 +55,13 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /.(eot|ttf|woff|woff2)$/,
-                use: 'file-loader',
-                options: {
-                    name: '[name].[hash:6].[ext]'
-                }
+                test: [/.(eot|ttf|woff|woff2)$/, /\.(png|jpe?g|gif|svg)(\?\S*)?$/],
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[hash:6].[ext]'
+                    }
+                }]
             }
         ]
     },
@@ -62,7 +69,8 @@ module.exports = {
         maxEntrypointSize: 300000,
         hints: 'warning'
     },
-    plugins: isProd ? [] : [
+    plugins: [
+        new ExtractTextPlugin('[name].[contenthash:6].css'),
         new FriendlyErrorsPlugin()
     ]
 }
