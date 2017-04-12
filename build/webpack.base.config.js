@@ -1,6 +1,7 @@
 const path = require('path')
 const vueConfig = require('./vue-loader.config')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -8,6 +9,7 @@ module.exports = {
     entry: {
         app: './src/entry-client.js',
         vendor: [
+            'babel-polyfill',
             'vue',
             'vuex',
             'vue-router',
@@ -40,7 +42,7 @@ module.exports = {
             },
             {
                 test: /.css$/,
-                loader: ['style-loader', 'css-loader']
+                loader: ['css-loader']
             },
             {
                 test: /.js$/,
