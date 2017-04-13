@@ -20,6 +20,15 @@ export default new Router({
     mode: 'history',
     scrollBehavior: () => ({ y: 0 }),
     routes: [
-        { path: '/', component: () => System.import('../pages/main/index.vue') }
+        {
+            path: '/',
+            component: () => System.import('../pages/main/index.vue'),
+            children: [
+                {
+                    path: '',
+                    component: () => System.import('../pages/main/discover.vue')
+                }
+            ]
+        }
     ]
 })

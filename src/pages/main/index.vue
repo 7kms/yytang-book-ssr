@@ -1,3 +1,3 @@
 <template>
-    <span>main</span>
+   <rooter-view></rooter-view>
 </template>
