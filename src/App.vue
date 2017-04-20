@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-       <rooter-view></rooter-view>
+       <router-view></router-view>
     </div>
 </template>
 <script>

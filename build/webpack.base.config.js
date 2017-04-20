@@ -46,7 +46,16 @@ module.exports = {
             {
                 test: /.css$/,
                 use: ExtractTextPlugin.extract({
-                    use: 'css-loader'
+                    use: [{
+                        loader: 'css-loader',
+                        options: { modules: false }
+                    }]
+                })
+            },
+            {
+                test: /.less$/,
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'less-loader']
                 })
             },
             {

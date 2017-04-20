@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+import 'normalize.css/normalize.css'
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
@@ -7,7 +8,7 @@ import { sync } from 'vuex-router-sync'
 import components from './components'
 import directives from './directives'
 import filters from './filters'
-import 'normalize.css'
+import './assets/less/basic.less'
 
 // sync the router with the vuex store.
 // this registers `store.state.route`
