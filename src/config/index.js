@@ -1,3 +1,3 @@
 export default {
-    serverApi: 'http://localhost:9000'
+    serverUrl: 'http://localhost:9000'
 }

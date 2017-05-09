@@ -1,8 +1,9 @@
 module.exports = {
-    preserveWhitespace: false,
-    postcss: [
-        require('autoprefixer')({
-            browsers: ['last 3 versions']
-        })
-    ]
+  extractCSS: process.env.NODE_ENV === 'production',
+  preserveWhitespace: true,
+  postcss: [
+    require('autoprefixer')({
+      browsers: ['last 3 versions']
+    })
+  ]
 }

@@ -15,8 +15,8 @@ Vue.use(Router)
 // If using Babel, `import()` can be supported via
 // babel-plugin-syntax-dynamic-import.
 
-
-export default new Router({
+export function createRouter () {
+  return new Router({
     mode: 'history',
     scrollBehavior: () => ({ y: 0 }),
     routes: [
@@ -31,4 +31,5 @@ export default new Router({
             ]
         }
     ]
-})
+  })
+}

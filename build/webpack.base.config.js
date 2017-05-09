@@ -6,6 +6,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
+     devtool: isProd
+    ? false
+    : '#cheap-module-source-map',
     entry: {
         app: './src/entry-client.js',
         vendor: [
@@ -23,11 +26,13 @@ module.exports = {
     },
     resolve: {
         alias: {
+            'api': path.resolve(__dirname, '../src/util/api'),
             'src': path.resolve(__dirname, '../src'),
             'public': path.resolve(__dirname, '../public')
         }
     },
     module: {
+        noParse: /es6-promise\.js$/, // avoid webpack shimming process
         rules: [{
                 enforce: 'pre',
                 test: /.vue$/,
