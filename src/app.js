@@ -1,4 +1,3 @@
-// import 'babel-polyfill'
 import 'normalize.css/normalize.css'
 import './assets/less/basic.less'
 import Vue from 'vue'

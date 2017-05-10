@@ -21,14 +21,17 @@ export function createRouter () {
     scrollBehavior: () => ({ y: 0 }),
     routes: [
         {
-            path: '/',
-            component: () => System.import('../pages/main/index.vue'),
-            children: [
-                {
-                    path: '',
-                    component: () => System.import('../pages/main/discover.vue')
-                }
-            ]
+            path: '/discover',
+            alias: '/',
+            component: () => import ('../pages/main/Discover.vue')
+        },
+        {
+            path: '/blog',
+            component: () => import ('../pages/main/Blog.vue')
+        },
+        {
+            path: '*',
+            redirect: '/discover'
         }
     ]
   })

@@ -3,12 +3,42 @@
 @import './basic.less';
 @import './components.less';
 @import './icon-font.less';
+@import './common.less';
 html{
-  font-size: @html-font-size * 1px;
+  height: 100%;
+  font-size: 10px;
+}
+body{
+  padding: 0;
+  margin: 0;
+  background-color: @body-color;
+  font-size: @font-size-base;
+  font-family: -apple-system,PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Helvetica Neue,sans-serif;
+  color: @font-color-base;
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+*{
+  box-sizing: border-box;
+}
+ul,li{
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+h1,h2,h3,h4,h5{
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+}
+a{
+  text-decoration: none;
+  &:link,&:visited{
+    color: inherit;
+  }
 }
 
-
-
-body{
-  font-size: @rem*16;
+input{
+  outline: none;
+  border: none;
 }

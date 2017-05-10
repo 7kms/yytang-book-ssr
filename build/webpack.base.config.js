@@ -33,12 +33,13 @@ module.exports = {
     },
     module: {
         noParse: /es6-promise\.js$/, // avoid webpack shimming process
-        rules: [{
-                enforce: 'pre',
-                test: /.vue$/,
-                use: 'eslint-loader',
-                exclude: /node_modules/
-            },
+        rules: [
+            // {
+            //     enforce: 'pre',
+            //     test: /.vue$/,
+            //     use: 'eslint-loader',
+            //     exclude: /node_modules/
+            // },
             {
                 test: /.vue$/,
                 use: [{
@@ -60,7 +61,14 @@ module.exports = {
             {
                 test: /.less$/,
                 use: ExtractTextPlugin.extract({
-                    use: ['css-loader', 'less-loader']
+                    use: [{ loader: 'css-loader' }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [require('autoprefixer')({
+                                    browsers: ['last 10 versions']
+                                })]
+                        }
+                    }, { loader: 'less-loader' }]
                 })
             },
             {
