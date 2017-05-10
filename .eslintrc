@@ -1,5 +1,9 @@
 {
     "extends": "vue",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "allowImportExportEverywhere": true
+    },
     "rules": {
         "indent": "off",
         "space-before-function-paren": "off",

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-
 // We are using Webpack code splitting here so that each route's associated
 // component code is loaded on-demand only when the route is visited.
 // It's actually not really necessary for a small project of this size but
@@ -15,24 +14,31 @@ Vue.use(Router)
 // If using Babel, `import()` can be supported via
 // babel-plugin-syntax-dynamic-import.
 
-export function createRouter () {
-  return new Router({
-    mode: 'history',
-    scrollBehavior: () => ({ y: 0 }),
-    routes: [
-        {
-            path: '/discover',
-            alias: '/',
-            component: () => import ('../pages/main/Discover.vue')
-        },
-        {
-            path: '/blog',
-            component: () => import ('../pages/main/Blog.vue')
-        },
-        {
-            path: '*',
-            redirect: '/discover'
-        }
-    ]
-  })
+export function createRouter() {
+    return new Router({
+        mode: 'history',
+        scrollBehavior: () => ({ y: 0 }),
+        routes: [{
+                path: '/discover',
+                alias: '/',
+                component: () =>
+                    import('../pages/main/Discover.vue'),
+                meta: {
+                    title: 'discover'
+                }
+            },
+            {
+                path: '/blog',
+                component: () =>
+                    import('../pages/main/Blog.vue'),
+                meta: {
+                    title: 'blog'
+                }
+            },
+            {
+                path: '*',
+                redirect: '/discover'
+            }
+        ]
+    })
 }

@@ -7,7 +7,7 @@ module.exports = {
         })
     ],
     cssModules: {
-          localIdentName: '[local]-[hash:base64:5]',
-          camelCase: true
-        }
+        localIdentName: '[local]-[hash:base64:5]',
+        camelCase: true
+    }
 }

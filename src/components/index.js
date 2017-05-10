@@ -1,9 +1,10 @@
 // import { Button, Select } from 'element-ui'
-import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import ElementUI from 'element-ui'
+import Icon from './icon'
 
 const componentsObj = {
-
+    Icon
 }
 const install = function(Vue) {
     Vue.use(ElementUI)

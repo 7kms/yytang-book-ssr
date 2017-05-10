@@ -6,9 +6,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-     devtool: isProd
-    ? false
-    : '#cheap-module-source-map',
+    devtool: isProd
+        ? false
+        : '#cheap-module-source-map',
     entry: {
         app: './src/entry-client.js',
         vendor: [
@@ -33,13 +33,12 @@ module.exports = {
     },
     module: {
         noParse: /es6-promise\.js$/, // avoid webpack shimming process
-        rules: [
-            // {
-            //     enforce: 'pre',
-            //     test: /.vue$/,
-            //     use: 'eslint-loader',
-            //     exclude: /node_modules/
-            // },
+        rules: [{
+                enforce: 'pre',
+                test: /.vue$/,
+                use: 'eslint-loader',
+                exclude: /node_modules/
+            },
             {
                 test: /.vue$/,
                 use: [{
@@ -65,8 +64,8 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             plugins: [require('autoprefixer')({
-                                    browsers: ['last 10 versions']
-                                })]
+                                browsers: ['last 10 versions']
+                            })]
                         }
                     }, { loader: 'less-loader' }]
                 })
