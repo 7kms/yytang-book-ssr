@@ -1,3 +1,9 @@
+<style>
+.adadad{
+  color: #fff;
+}
+</style>
+
 <style lang="less" module>
   @import '../../assets/less/variable.less';
   @active-color: #3e3e3e;
@@ -24,6 +30,7 @@
     padding: 0 3rem;
     justify-content: space-between;
     height: 5rem;
+    min-width: 70rem;
     color: #fff;
     background-color: @theme-color;
   }

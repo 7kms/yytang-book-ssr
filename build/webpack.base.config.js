@@ -1,4 +1,5 @@
 const path = require('path')
+
 const vueConfig = require('./vue-loader.config')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -6,9 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
-    devtool: isProd
-        ? false
-        : '#cheap-module-source-map',
+    devtool: isProd ? false : '#cheap-module-source-map',
     entry: {
         app: './src/entry-client.js',
         vendor: [
@@ -51,16 +50,17 @@ module.exports = {
             },
             {
                 test: /.css$/,
-                use: ExtractTextPlugin.extract({
+                use: isProd ? ExtractTextPlugin.extract({
                     use: [{
                         loader: 'css-loader',
                         options: { modules: false }
-                    }]
-                })
+                    }],
+                    fallback: 'vue-style-loader'
+                }) : ['vue-style-loader', 'css-loader']
             },
             {
                 test: /.less$/,
-                use: ExtractTextPlugin.extract({
+                use: isProd ? ExtractTextPlugin.extract({
                     use: [{ loader: 'css-loader' }, {
                         loader: 'postcss-loader',
                         options: {
@@ -68,8 +68,16 @@ module.exports = {
                                 browsers: ['last 10 versions']
                             })]
                         }
-                    }, { loader: 'less-loader' }]
-                })
+                    }, { loader: 'less-loader' }],
+                    fallback: 'vue-style-loader'
+                }) : ['vue-style-loader', 'css-loader', {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: [require('autoprefixer')({
+                            browsers: ['last 10 versions']
+                        })]
+                    }
+                }, 'less-loader']
             },
             {
                 test: /.js$/,
@@ -91,8 +99,5 @@ module.exports = {
         maxEntrypointSize: 300000,
         hints: 'warning'
     },
-    plugins: [
-        new ExtractTextPlugin('[name].[contenthash:6].css'),
-        new FriendlyErrorsPlugin()
-    ]
+    plugins: isProd ? [new ExtractTextPlugin('[name].[contenthash:6].css')] : [new FriendlyErrorsPlugin()]
 }
