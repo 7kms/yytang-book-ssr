@@ -27,6 +27,7 @@ module.exports = {
     resolve: {
         alias: {
             'api': path.resolve(__dirname, '../src/util/api'),
+            'actionTypes': path.resolve(__dirname, '../src/store/action-types'),
             'src': path.resolve(__dirname, '../src'),
             'public': path.resolve(__dirname, '../public')
         }

@@ -29,6 +29,9 @@
   }
   .link{
     flex: 1;
+    .icon{
+      margin-right: 1rem;
+    }
   }
   .item{
     display: inline-block;
@@ -45,13 +48,15 @@
     <nav :class="[$style.nav,'size-topic']">
         <router-link to="/" :class="$style.logo">
           <img :src="logo" width="40" height="40">
-          <span>小y的技术博客</span>
+          <span>小y收录</span>
         </router-link>
         <div :class="$style.link">
-          <router-link to="/discover" :class="['link',$style.item,{[$style.active]:route.fullPath == '/discover' || route.fullPath == '/'}]">
-           <y-icon name="search"></y-icon><span>discover</span>
+         <router-link to="/blog" :class="['link',$style.item,{[$style.active]:hightRoute == 'blog'}]">
+           <y-icon name="blog" :class="$style.icon" /><span>blog</span>
           </router-link>
-          <router-link to="/blog" :class="['link',$style.item,{[$style.active]:route.fullPath == '/blog'}]">blog</router-link>
+          <router-link to="/discover" :class="['link',$style.item,{[$style.active]:hightRoute == 'discover'}]">
+           <y-icon name="discover" :class="$style.icon" /><span>discover</span>
+          </router-link>
         </div>
         <div :class="$style.userInfo">
           <div>
@@ -66,12 +71,25 @@
       computed: {
         ...mapState({
           route: state => state.route
-        })
+        }),
+        hightRoute() {
+            const fullPath = this.route.fullPath;
+            let str = '';
+            if (fullPath == '/discover') {
+              str = 'discover';
+            } else if (fullPath == '/blog' || fullPath == '/') {
+               str = 'blog';
+            }
+            return str;
+        }
       },
      data() {
        return {
          logo: require('../../assets/images/logo-white-144.png')
        }
+     },
+     created() {
+       console.log(this.$store.state.route)
      }
    }
 </script>

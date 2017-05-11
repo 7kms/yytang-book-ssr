@@ -19,25 +19,38 @@ export function createRouter() {
         mode: 'history',
         scrollBehavior: () => ({ y: 0 }),
         routes: [{
-                path: '/discover',
+                path: '/blog',
                 alias: '/',
                 component: () =>
-                    import('../pages/main/Discover.vue'),
-                meta: {
-                    title: 'discover'
-                }
-            },
-            {
-                path: '/blog',
-                component: () =>
-                    import('../pages/main/Blog.vue'),
+                    import('../pages/main/blog.vue'),
                 meta: {
                     title: 'blog'
                 }
             },
             {
+                path: '/discover',
+                component: () =>
+                    import('../pages/main/discover.vue'),
+                meta: {
+                    title: 'discover'
+                }
+            },
+             {
+                path: '/article/:articleId',
+                component: () =>
+                    import('../pages/article/index.vue'),
+                meta: {
+                    title: 'blog'
+                }
+            },
+            {
+                path: '/entrance/:column?',
+                component: () =>
+                    import('../pages/entrance/index.vue')
+            },
+            {
                 path: '*',
-                redirect: '/discover'
+                redirect: '/'
             }
         ]
     })

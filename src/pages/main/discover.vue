@@ -6,11 +6,13 @@
 <template>
   <div>
     <NavHeader></NavHeader>
-    <div :class="$style.content"></div>
+    <div :class="$style.content">
+    
+    </div>
   </div>
 </template>
 <script>
-  import NavHeader from './Header.vue'
+  import NavHeader from './header.vue'
   export default {
     components: {
       NavHeader
