@@ -1,15 +1,37 @@
 <style lang="less" module>
+     @import '../../assets/less/variable.less';
     .content{
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    .left,.right{
         background-color: #fff;
+    }
+    .left{
+        flex: 1;
+    }
+    .right{
+        width: 30rem;
+        margin-left: 2rem;
+    }
+    @media screen and (max-width:70rem){
+        .right{
+            display:none;
+        }
     }
 </style>
 <template>
     <div>
         <NavHeader></NavHeader>
         <div :class="$style.content">
-            <div v-for="(item,index) in list" :key="index">
-                {{item.a}}
+            <div :class="$style.left">
+                <Item v-for="(item,index) in list" :key="index"></Item>
+            </div>
+            <div :class="$style.right">
+                right-content
             </div>
         </div>
     </div>
