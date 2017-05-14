@@ -75,9 +75,7 @@
             Login,
             Register
         },
-        beforeRouteUpdate() {
-            
-        },
+        beforeRouteUpdate() {},
         methods: {
             isLogin() {
                 console.log(this.$router.currentRoute);
