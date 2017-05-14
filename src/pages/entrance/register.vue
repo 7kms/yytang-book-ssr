@@ -88,6 +88,7 @@ import Util from '../../util';
 export default {
     data() {
         return {
+            isLoading: false,
             pwdHint: true,
             emailHint: true,
             pwdErrorText: '',

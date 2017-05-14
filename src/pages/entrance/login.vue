@@ -79,6 +79,7 @@
     export default {
         data() {
             return {
+                isLoading: false,
                 pwdHint: true,
                 accountlHint: true,
                 emailAccountText: '账号不符合规范',

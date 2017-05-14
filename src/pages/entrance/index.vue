@@ -51,17 +51,17 @@
     <div :class="$style.wrap">
         <div class="text-center" :class="$style.logo">
             <img src="../../assets/images/logo-114.png" width="100" height="100" alt="logo">
-            <p :class="$style.title">弹枪不是枪?</p>
+            <p :class="$style.title">小歪收录</p>
         </div>
         <div :class="$style.nav">
             <div class="text-center" :class="$style.navTab">
-                <a :class="{ [$style.btn]:true, [$style.on]:isLogin}" href="javascript:;" @click="goLogin">登录</a>
+                <a :class="{ [$style.btn]:true, [$style.on]:isLogin()}" href="javascript:;" @click="goLogin">登录</a>
                 <y-icon name="dot" color="#999"></y-icon>
-                <a :class="{ [$style.btn]:true, [$style.on]:!isLogin}" href="javascript:;" @click="goRegister">注册</a>
+                <a :class="{ [$style.btn]:true, [$style.on]:!isLogin()}" href="javascript:;" @click="goRegister">注册</a>
             </div>
         </div>
         <div :class="$style.content">
-            <Login v-if="isLogin"></Login>
+            <Login v-if="isLogin()"></Login>
             <Register v-else></Register>
         </div>
     </div>
@@ -75,12 +75,14 @@
             Login,
             Register
         },
-        computed: {
-            isLogin() {
-                return this.$router.currentRoute.path == '/entrance/login';
-            }
+        beforeRouteUpdate() {
+            
         },
         methods: {
+            isLogin() {
+                console.log(this.$router.currentRoute);
+                return this.$router.currentRoute.path == '/entrance/login';
+            },
             goLogin() {
                 this.$router.replace('login');
             },
