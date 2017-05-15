@@ -75,7 +75,7 @@
 </template>
 <script>
     // import { mapGetters } from 'vuex';
-    // import $api from 'api';
+    import $api from 'api';
     export default {
         data() {
             return {
@@ -85,7 +85,8 @@
                 emailAccountText: '账号不符合规范',
                 user: {
                     account: '15901126559',
-                    password: 'tangliang'
+                    email: 'tlyspa@gmail.com',
+                    password: '111111'
                 }
             }
         },
@@ -113,15 +114,7 @@
             },
             login() {
                 if (!this.validate()) return false;
-                // $api.post('/user/login', this.user)
-                //     .then(data => {
-                //         this.$store.dispatch('account/LOGIN_SUCCESS', data);
-                //         this.$store.dispatch('user/SET_USERINFO', data);
-                //         this.$router.replace(this.$route.query.redirect || '/');
-                //     }, res => {
-                //         this.pwdHint = false;
-                //         this.pwdErrorText = res.msg;
-                //     })
+                $api.post('/user/login', this.user);
             }
         }
     }
