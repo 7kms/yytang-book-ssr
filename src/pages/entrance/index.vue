@@ -75,11 +75,10 @@
             Login,
             Register
         },
-        beforeRouteUpdate() {},
         methods: {
             isLogin() {
-                console.log(this.$router.currentRoute);
-                return this.$router.currentRoute.path == '/entrance/login';
+                const { column } = this.$route.params;
+                return column == 'login';
             },
             goLogin() {
                 this.$router.replace('login');

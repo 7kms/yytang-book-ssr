@@ -83,7 +83,8 @@
     </form>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
+import $api from 'api';
 import Util from '../../util';
 export default {
     data() {
@@ -94,16 +95,11 @@ export default {
             pwdErrorText: '',
             emailErrorText: '邮箱格式不正确',
             user: {
-                email: '',
-                password: '',
+                email: 'tlyspa@gmail.com',
+                password: '111111',
                 pwd: ''
             }
         }
-    },
-    computed: {
-        ...mapGetters({
-            isLoading: 'regLoading'
-        })
     },
     methods: {
         resetHint() {
@@ -135,16 +131,13 @@ export default {
             return this.checkEmail() && this.checkPwd();
         },
         registure() {
-            if (!this.validate()) return false;
+            // if (!this.validate()) return false;
             const { email, password } = this.user;
-            this.$store.dispatch('account/REGISTER', { email, password })
-                .then(res => {
-                    console.log(res);
-                    // this.$router.replace(this.$route.query.redirect || '/')
-                }, res => {
-                    console.log(res);
-                    this.$Toast.show({ text: res.msg, duration: 3000 });
-                })
+            $api.post('user/register', { email, password })
+            .then(data => {
+            }).catch(res => {
+
+            })
         }
     }
 }

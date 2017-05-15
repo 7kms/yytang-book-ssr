@@ -45,6 +45,9 @@
             NavHeader,
             Item
         },
+        beforeMount() {
+            console.log('beforeMount')
+        },
         computed: {
             ...mapState({
                 list: state => state.blog.list

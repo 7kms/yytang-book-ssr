@@ -30,18 +30,19 @@ export default {
                     console.log('Error', error.message);
                }
                console.log(error.config);
+               reject(error);
             })
         })
     },
     post(url, params) {
         return new Promise((resolve, reject) => {
-            axios.post(url, params)
+            instance.post(url, params)
                 .then(res => {
                     resolve(res.data);
                 })
                 .catch(err => {
                     console.log(err);
-                    reject();
+                    reject(err);
                 });
         })
     }
