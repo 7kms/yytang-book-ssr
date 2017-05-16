@@ -54,7 +54,7 @@
             <span :class="$style.iconWrap">
                 <y-icon name="mail" size="10" color="#999"></y-icon>
             </span>
-            <input :class="$style.input" type="text" maxlength="30" v-model="user.account" placeholder="邮箱" @focus="resetHint()">
+            <input :class="$style.input" type="text" maxlength="30" v-model="user.email" placeholder="邮箱" @focus="resetHint()">
         </div>
         <div :class="$style.itemHint" v-if="!accountlHint">
             <y-hint name="error" size="10">{{emailAccountText}}</y-hint>
@@ -68,6 +68,9 @@
          <div :class="$style.itemHint" v-if="!pwdHint">
             <y-hint name="error" size="10">{{pwdErrorText}}</y-hint>
         </div>
+        <div :class="$style.itemHint" v-if="serverErrorText">
+            <y-hint name="error" size="10">{{serverErrorText}}</y-hint>
+        </div>
         <div>
             <y-button :class="$style.btnSubmit" type="submit" :block="true" :disabled="false">{{ isLoading ?  '正在登录...' : '登录'}}</y-button>
         </div>
@@ -80,11 +83,12 @@
         data() {
             return {
                 isLoading: false,
+                serverHint: true,
                 pwdHint: true,
                 accountlHint: true,
                 emailAccountText: '账号不符合规范',
+                serverErrorText: '',
                 user: {
-                    account: '15901126559',
                     email: 'tlyspa@gmail.com',
                     password: '111111'
                 }
@@ -94,9 +98,10 @@
              resetHint() {
                 this.pwdHint = true;
                 this.accountlHint = true;
+                this.serverErrorText = '';
             },
             checkaAccount() {
-                const str = this.user.account.trim();
+                const str = this.user.email.trim();
                 this.accountlHint = (str.length >= 5 && str.length <= 20);
                 return this.accountlHint;
             },
@@ -114,7 +119,17 @@
             },
             login() {
                 if (!this.validate()) return false;
-                $api.post('/user/login', this.user);
+                $api.post('/user/login', this.user)
+                .then(body => {
+                    if (body.code == 200) {
+                        this.$store.dispatch('user/SET_INFO', body.data.user);
+                        this.$router.replace('/');
+                    } else {
+                        this.serverErrorText = '用户名或密码不对';
+                    }
+                }).catch(err => {
+                    console.log(err);
+                })
             }
         }
     }
