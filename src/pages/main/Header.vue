@@ -83,10 +83,8 @@
             return str;
         }
       },
-      asyncData({ store, route }) {
-        
-      },
-     data() {
+      asyncData({ store, route }) {},
+      data() {
        return {
          logo: require('../../assets/images/logo-white-144.png')
        }
